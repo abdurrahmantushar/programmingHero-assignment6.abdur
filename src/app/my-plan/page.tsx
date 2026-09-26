@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { toast } from "react-toastify";
 import { useEffect, useMemo, useState } from "react";
 import { Clock3, Flame, X ,Star} from "lucide-react";
 
@@ -80,6 +81,7 @@ export default function MyPlanPage() {
       "fitlog-completed",
       JSON.stringify(updatedCompleted)
     );
+      toast.success("Workout marked as done!");
 
   };
 
@@ -109,6 +111,7 @@ export default function MyPlanPage() {
     }
     
     window.dispatchEvent(new Event("fitlog-update"));
+    toast.success("Workout removed from saved.");
   };
 
   return (
