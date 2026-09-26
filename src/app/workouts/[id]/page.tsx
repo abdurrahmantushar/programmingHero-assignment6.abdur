@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { ArrowLeft, CalendarPlus, Bookmark } from "lucide-react";
 import { useParams } from "next/navigation";
 import { getWorkoutById } from "@/lib/api";
@@ -79,6 +80,7 @@ const handleAddToPlan = () => {
 
   setIsAdded(true);
   window.dispatchEvent(new Event("fitlog-update"));
+  toast.success("Workout added to today's plan!");
 };
 
 const handleSave = () => {
@@ -105,6 +107,7 @@ const handleSave = () => {
 
   setIsSaved(true);
   window.dispatchEvent(new Event("fitlog-update"));
+  toast.success("Workout saved for later!");
 };
 
   if (loading) {
