@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -56,59 +57,59 @@ export default function WorkoutDetailsPage() {
     }
   }, [id]);
 
-const handleAddToPlan = () => {
-  if (!workout) return;
+  const handleAddToPlan = () => {
+    if (!workout) return;
 
-  const plan = JSON.parse(
-    localStorage.getItem("fitlog-plan") || "[]"
-  );
+    const plan = JSON.parse(
+      localStorage.getItem("fitlog-plan") || "[]"
+    );
 
-  const alreadyAdded = plan.some(
-    (item: Workout) => item.id === workout.id
-  );
+    const alreadyAdded = plan.some(
+      (item: Workout) => item.id === workout.id
+    );
 
-  if (alreadyAdded) {
-    return;
-  }
+    if (alreadyAdded) {
+      return;
+    }
 
-  const updatedPlan = [...plan, workout];
+    const updatedPlan = [...plan, workout];
 
-  localStorage.setItem(
-    "fitlog-plan",
-    JSON.stringify(updatedPlan)
-  );
+    localStorage.setItem(
+      "fitlog-plan",
+      JSON.stringify(updatedPlan)
+    );
 
-  setIsAdded(true);
-  window.dispatchEvent(new Event("fitlog-update"));
-  toast.success("Workout added to today's plan!");
-};
+    setIsAdded(true);
+    window.dispatchEvent(new Event("fitlog-update"));
+    toast.success("Workout added to today's plan!");
+  };
 
-const handleSave = () => {
-  if (!workout) return;
+  const handleSave = () => {
+    if (!workout) return;
 
-  const saved = JSON.parse(
-    localStorage.getItem("fitlog-saved") || "[]"
-  );
+    const saved = JSON.parse(
+      localStorage.getItem("fitlog-saved") || "[]"
+    );
 
-  const alreadySaved = saved.some(
-    (item: Workout) => item.id === workout.id
-  );
+    const alreadySaved = saved.some(
+      (item: Workout) => item.id === workout.id
+    );
 
-  if (alreadySaved) {
-    return;
-  }
+    if (alreadySaved) {
+      return;
+    }
 
-  const updatedSaved = [...saved, workout];
+    const updatedSaved = [...saved, workout];
 
-  localStorage.setItem(
-    "fitlog-saved",
-    JSON.stringify(updatedSaved)
-  );
+    localStorage.setItem(
+      "fitlog-saved",
+      JSON.stringify(updatedSaved)
+    );
 
-  setIsSaved(true);
-  window.dispatchEvent(new Event("fitlog-update"));
-  toast.success("Workout saved for later!");
-};
+    setIsSaved(true);
+    window.dispatchEvent(new Event("fitlog-update"));
+    toast.success("Workout saved for later!");
+  };
 
   if (loading) {
     return (
@@ -142,9 +143,9 @@ const handleSave = () => {
 
   return (
     <main className="min-h-screen bg-[#0f1014] px-4 py-8 sm:px-6 lg:px-8 lg:py-11">
-      <div className="mx-auto max-w-[1200px] border-t border-[#20232a] pt-9">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-10">
-          <div className="relative h-[540px] overflow-hidden rounded-xl bg-[#20242c] sm:h-[600px] lg:h-[740px]">
+      <div className="mx-auto max-w-[1200px] border-t border-[#20232a] pt-7 sm:pt-9">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1fr_1fr] lg:gap-10">
+          <div className="relative h-[400px] overflow-hidden rounded-xl bg-[#20242c] sm:h-[600px] lg:h-[740px]">
             <img
               src={workout.image}
               alt={workout.name}
@@ -152,7 +153,7 @@ const handleSave = () => {
             />
           </div>
 
-          <div className="flex flex-col justify-center">
+          <div className="flex min-w-0 flex-col justify-center">
             <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-white sm:text-4xl lg:text-[30px]">
               {workout.name}
             </h1>
@@ -173,26 +174,26 @@ const handleSave = () => {
             </div>
 
             <div className="mt-5 overflow-hidden rounded-xl border border-[#252932] bg-[#1E2330]">
-              <div className="flex items-center justify-between border-b border-[#252932] px-4 py-3">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
+              <div className="flex items-center justify-between gap-4 border-b border-[#252932] px-4 py-3">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
                   Equipment
                 </span>
-                <span className="text-xs text-[#E1E3E7]">
+                <span className="break-words text-right text-xs text-[#E1E3E7]">
                   {workout.equipment}
                 </span>
               </div>
 
-              <div className="flex items-center justify-between border-b border-[#252932] px-4 py-3">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
+              <div className="flex items-center justify-between gap-4 border-b border-[#252932] px-4 py-3">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
                   Difficulty
                 </span>
-                <span className="text-xs text-[#E1E3E7]">
+                <span className="break-words text-right text-xs text-[#E1E3E7]">
                   {workout.difficulty}
                 </span>
               </div>
 
-              <div className="flex items-center justify-between border-b border-[#252932] px-4 py-3">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
+              <div className="flex items-center justify-between gap-4 border-b border-[#252932] px-4 py-3">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
                   Sets
                 </span>
                 <span className="text-xs text-[#E1E3E7]">
@@ -200,17 +201,17 @@ const handleSave = () => {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between border-b border-[#252932] px-4 py-3">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
+              <div className="flex items-center justify-between gap-4 border-b border-[#252932] px-4 py-3">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
                   Reps
                 </span>
-                <span className="text-xs text-[#E1E3E7]">
+                <span className="break-words text-right text-xs text-[#E1E3E7]">
                   {workout.reps}
                 </span>
               </div>
 
-              <div className="flex items-center justify-between border-b border-[#252932] px-4 py-3">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
+              <div className="flex items-center justify-between gap-4 border-b border-[#252932] px-4 py-3">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
                   Duration
                 </span>
                 <span className="text-xs text-[#E1E3E7]">
@@ -218,8 +219,8 @@ const handleSave = () => {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between border-b border-[#252932] px-4 py-3">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
+              <div className="flex items-center justify-between gap-4 border-b border-[#252932] px-4 py-3">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
                   Calories
                 </span>
                 <span className="text-xs text-[#E1E3E7]">
@@ -227,8 +228,8 @@ const handleSave = () => {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between px-4 py-3">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
+              <div className="flex items-center justify-between gap-4 px-4 py-3">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#8D939D]">
                   Rating
                 </span>
                 <span className="text-xs text-[#E1E3E7]">
@@ -260,12 +261,12 @@ const handleSave = () => {
               </div>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap">
               <button
                 type="button"
                 onClick={handleAddToPlan}
                 disabled={isAdded}
-                className={`inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-[11px] font-bold transition-all duration-200 ${
+                className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-[11px] font-bold transition-all duration-200 sm:w-auto ${
                   isAdded
                     ? "bg-[#273018] text-[#C2F800]"
                     : "bg-[#C2F800] text-black hover:bg-[#d2ff25]"
@@ -282,7 +283,7 @@ const handleSave = () => {
                 type="button"
                 onClick={handleSave}
                 disabled={isSaved}
-                className={`inline-flex items-center justify-center gap-2 rounded-lg border px-5 py-3 text-[11px] font-medium transition-all duration-200 ${
+                className={`inline-flex w-full items-center justify-center gap-2 rounded-lg border px-5 py-3 text-[11px] font-medium transition-all duration-200 sm:w-auto ${
                   isSaved
                     ? "border-[#C2F800] text-[#C2F800]"
                     : "border-[#343944] text-[#D5D8DE] hover:border-[#C2F800] hover:text-[#C2F800]"
