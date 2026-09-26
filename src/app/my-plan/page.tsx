@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useEffect, useMemo, useState } from "react";
-import { Clock3, Flame, X ,Star} from "lucide-react";
+import { Clock3, Flame, X, Star } from "lucide-react";
 
 import type { Workout } from "@/types/workout";
 
@@ -81,8 +81,8 @@ export default function MyPlanPage() {
       "fitlog-completed",
       JSON.stringify(updatedCompleted)
     );
-      toast.success("Workout marked as done!");
 
+    toast.success("Workout marked as done!");
   };
 
   const removeWorkout = (id: number) => {
@@ -109,7 +109,7 @@ export default function MyPlanPage() {
         JSON.stringify(updatedSaved)
       );
     }
-    
+
     window.dispatchEvent(new Event("fitlog-update"));
     toast.success("Workout removed from saved.");
   };
@@ -244,28 +244,34 @@ export default function MyPlanPage() {
                       <div className="mt-2 text-[12px] text-[#8A92A0]">
                         {workout.equipment}
                       </div>
-                      <div className="mt-2 flex items-center gap-4 text-[12px] text-[white]">
+
+                      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-[white]">
                         <span className="flex items-center gap-1">
-                          <Clock3 size={12} className="text-[#CCFF00]"/>
+                          <Clock3 size={12} className="text-[#CCFF00]" />
                           {workout.duration} min
                         </span>
 
                         <span className="flex items-center gap-1">
-                          <Flame size={12} className="text-[#CCFF00]"/>
+                          <Flame size={12} className="text-[#CCFF00]" />
                           {workout.caloriesBurned} kcal
                         </span>
-                    <div className="flex items-center gap-1.5">
-                    <Star size={14} strokeWidth={2.5} className="text-[#CCFF00]" />
-                    <span>{workout.rating}</span>
-                  </div>
+
+                        <div className="flex items-center gap-1.5">
+                          <Star
+                            size={14}
+                            strokeWidth={2.5}
+                            className="text-[#CCFF00]"
+                          />
+                          <span>{workout.rating}</span>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex shrink-0 items-center gap-2">
+                    <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:shrink-0">
 
                       <Link
                         href={`/workouts/${workout.id}`}
-                        className="rounded-2xl border border-[#343944] px-3 py-2 text-[12px]  text-[#D5D8DE] transition-colors hover:border-[#C2F800] hover:text-[#C2F800]"
+                        className="rounded-2xl border border-[#343944] px-3 py-2 text-[12px] text-[#D5D8DE] transition-colors hover:border-[#C2F800] hover:text-[#C2F800]"
                       >
                         View Details
                       </Link>
